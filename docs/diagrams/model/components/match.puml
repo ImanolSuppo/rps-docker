@@ -1,0 +1,24 @@
+@startuml
+skinparam componentStyle uml1
+skinparam lineType polyline
+
+database "matches"
+
+package "Controllers" {
+[MatchController]
+}
+
+[MatchController] --(createMatch
+
+package "Services" {
+createMatch -- [MatchServices]
+}
+
+[MatchServices] --(save
+
+package "Repositories" {
+save -- [MatchRepository]
+[MatchRepository] --("matches"
+}
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+skinparam componentStyle uml1
+skinparam linetype polyline
+top to bottom direction
+
+database "players"
+
+package "Controllers" {
+[LoginController] --(login
+}
+
+package "Services" {
+[LoginService] --(getPlayerByUserNameAndPassword
+[LoginService] --(getPlayerByEmailAndPassword
+[LoginService] --(savePlayer
+
+[PlayerService] --(save
+[PlayerService] --(findByUserNameOrEmail
+[PlayerService] --(findByUserNameAndPassword
+[PlayerService] --(findByEmailAndPassword
+
+login -- [LoginService]
+getPlayerByUserNameAndPassword -- [PlayerService]
+getPlayerByEmailAndPassword -- [PlayerService]
+savePlayer -- [PlayerService]
+}
+
+package "Repositories" {
+[PlayerJpaRepository] --("players"
+save -- [PlayerJpaRepository]
+findByUserNameOrEmail -- [PlayerJpaRepository]
+findByUserNameAndPassword -- [PlayerJpaRepository]
+findByEmailAndPassword -- [PlayerJpaRepository]
+}
+
+@enduml
